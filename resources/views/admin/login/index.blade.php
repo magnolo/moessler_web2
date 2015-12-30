@@ -5,7 +5,7 @@
         <div class="col-md-6 col-md-offset-3">
 
             <div class="login-logo">
-                <img src="/admin/images/main/upme-white-shaddow.png" alt="Upme logo">
+                LAByrinth
             </div>
 
             <div class="login-panel panel panel-default login-form">
@@ -34,17 +34,14 @@
                         </div>
                     </div>
 
-                    <p style="font-size: 14px;">Emal: demo@demo.com</p>
-                    <p style="font-size: 14px; margin-top: -20px">password: demodemo</p>
-
                     <!-- Remember -->
                     <div class="remember">
                         <input type='checkbox' name='remember' value='1' ng-model="vm.user.remember">
-                        Remember Me
+                        Angemeldet bleiben
                     </div>
 
                     <!-- Submit -->
-                    <input type='submit' value="Login" class="btn btn-login" ng-click="vm.login()" value="Login"></input>
+                    <input type='submit' class="btn btn-login pull-right" ng-click="vm.login()" value="Anmelden"></input>
 
                     </form>
 

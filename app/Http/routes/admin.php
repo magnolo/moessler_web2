@@ -8,6 +8,7 @@
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function ()
 {
+
     Route::get('/login', ['uses' => 'LoginController@index']);
     Route::post('/login', 'LoginController@login');
 
@@ -33,6 +34,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function ()
             Route::post('/gallery/search', 'GalleryController@search');
             Route::post('/destroy-gallery-image', 'GalleryController@destroyImage');
 
+            Route::resource('sliders', 'SlidersController');
+
         });
 
         Route::get('/views/{name}', function($name) {
@@ -46,4 +49,3 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function ()
     });
 
 });
-

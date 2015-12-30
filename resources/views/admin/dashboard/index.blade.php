@@ -47,7 +47,7 @@
                     <i class="material-icons">image</i>
                 </div>
                 <p>
-                    Galleries
+                    Galerien
                     <span class="count-number" ng-bind="vm.galleries_count"></span>
                 </p>
             </div>

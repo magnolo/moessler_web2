@@ -7,7 +7,7 @@
 <div class="row">
     <!-- main heading -->
     <div class="col-lg-12">
-        <h3 class="page-header">Gallery</h3>
+        <h3 class="page-header">Galerie</h3>
         <page-loading ng-show="!vm.ready"></page-loading>
     </div>
 </div>
@@ -19,7 +19,7 @@
             <!-- panel heading -->
             <div class="panel-heading panel-heading-admin">
                 <a ui-sref="gallery-create">
-                    Create Gallery
+                    Neue Galerie erstellen
                 </a>
             </div>
 
@@ -29,7 +29,7 @@
 
                     <!-- count -->
                     <div class="count">
-                        <span ng-bind="vm.total"></span> Galleries
+                        <span ng-bind="vm.total"></span> Galerien
                     </div>
 
                     <!-- search -->
@@ -46,7 +46,7 @@
                         <thead>
                         <tr>
                             <th>Name</th>
-                            <th class="table-actions">Action</th>
+                            <th class="table-actions">Aktion</th>
                         </tr>
 
                         </thead>

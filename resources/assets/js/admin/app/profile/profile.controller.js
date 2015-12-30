@@ -39,7 +39,7 @@
             User.update({id: vm.authUser.id}, vm.authUser, function (res) {
                 _successResponse(res.message);
             }, function (err) {
-                _errorResponse(err.data, 'User edition failed, see errors below');
+                _errorResponse(err.data, 'Bearbeiten fehlgeschlagen, die Hinweise stehen unten');
             });
         }
 

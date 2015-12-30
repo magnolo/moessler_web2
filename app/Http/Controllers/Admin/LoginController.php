@@ -43,13 +43,13 @@ class LoginController extends Controller
         {
             if(Auth::user()->UserRoles->role > 1)
             {
-                return response()->json(["message" => "Welcome"]);
+                return response()->json(["message" => "Willkommen"]);
             }
 
-            return response()->json(["The email or password you entered is not correct"], 422);
+            return response()->json(["Die E-Mail und/oder das Passwort sind nicht korrekt"], 422);
         }
 
-        return response()->json(["The email or password you entered is not correct"], 422);
+        return response()->json(["Die E-Mail und/oder das Passwort sind nicht korrekt"], 422);
     }
 
     /**

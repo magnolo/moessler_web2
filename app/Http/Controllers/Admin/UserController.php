@@ -54,7 +54,7 @@ class UserController extends Controller
 
         if(Auth::user()->UserRoles->role <= $request->role)
         {
-            return response()->json(["You don't have permission to create this type of user"], 422);
+            return response()->json(["Du hast keine Berechtigung einen solchen Benutzer zu erstellen"], 422);
         }
 
         $data = $request->all();
@@ -77,7 +77,7 @@ class UserController extends Controller
         $user = User::create($data);
         $user->UserRoles()->save(new UserRoles($data));
 
-        return response()->json(['message' => 'User successfully Created']);
+        return response()->json(['message' => 'Benutzer erfolgreich angelegt']);
     }
 
     /**

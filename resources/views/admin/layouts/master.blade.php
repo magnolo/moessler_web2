@@ -18,7 +18,7 @@
 
             <!-- logo -->
             <a class="navbar-logo pull-left" ui-sref="dashboard">
-                <img src="/admin/images/main/upme.png" alt="Upme logo">
+                  <img src="/admin/images/main/upme.png" alt="Upme logo">
             </a>
 
         </div>
@@ -29,13 +29,13 @@
                 <div class="admin-user pull-left">
                     <a ui-sref="profile" ng-class="{active: mainUrl == 'profile'}">
                         <i class="material-icons">account_box</i>
-                        Me
+                        Ich
                     </a>
                 </div>
                 <div class="logout pull-left">
                     <a href="/admin/logout" target="_self">
                         <i class="material-icons">exit_to_app</i>
-                        Logout
+                        Abmelden
                     </a>
                 </div>
             </div>
@@ -52,7 +52,7 @@
                     <li class='visible-xs' ng-class="{active: mainUrl == 'profile'}">
                         <a ui-sref="profile" ng-click="isCollapsed = !isCollapsed">
                             <i class="material-icons">account_box</i>
-                            Me
+                            Ich
                         </a>
                     </li>
                     <li ng-class="{active: mainUrl == 'dashboard'}">
@@ -64,7 +64,13 @@
                     <li ng-class="{active: mainUrl == 'users'}">
                         <a ui-sref="users" ng-click="isCollapsed = !isCollapsed">
                             <i class="material-icons pull-left">supervisor_account</i>
-                            Users
+                            Benutzer
+                        </a>
+                    </li>
+                    <li ng-class="{active: mainUrl == 'sliders'}">
+                        <a ui-sref="sliders" ng-click="isCollapsed = !isCollapsed">
+                            <i class="material-icons">subtitles</i>
+                            Sliders
                         </a>
                     </li>
                     <li ng-class="{active: mainUrl == 'posts'}">
@@ -97,18 +103,8 @@
         <!-- Angular views -->
         <div ui-view id="ui-view"></div>
 
-
-        <div id="github">
-            <a href="https://github.com/DimitriMikadze/laravel-angular-cms" target="_blank">
-                <i class="fa fa-github-square"></i>
-                <p>
-                    Fork Me On Github
-                </p>
-            </a>
-        </div>
-
     </div>
-    
+
 </div>
 
 @include('admin.layouts.footer')

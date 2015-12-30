@@ -7,7 +7,7 @@
 <!-- main heading -->
 <div class="row">
     <div class="col-lg-12">
-        <h3 class="page-header">Users</h3>
+        <h3 class="page-header">Benutzer</h3>
         <page-loading ng-show="!vm.ready"></page-loading>
     </div>
 </div>
@@ -19,7 +19,7 @@
             <!-- panel heading -->
             <div class="panel-heading">
                 <a ui-sref="user-create">
-                    Create User
+                    Neuen Benutzer erstellen
                 </a>
             </div>
 
@@ -29,14 +29,14 @@
 
                     <!-- count -->
                     <div class="count">
-                        <span ng-bind="vm.total"></span> users
+                        <span ng-bind="vm.total"></span> Benutzer
                     </div>
 
                     <!-- filter by user role -->
                     <div class="filter pull-left">
-                        <span>Filter By:</span>
+                        <span>Filter:</span>
                         <select ng-model="vm.roleFilter" ng-change="vm.filterByRole()" ng-init="vm.roleFilter = 'Role'">
-                            <option>Role</option>
+                            <option>Rechte</option>
                             <option value="0">Not Auth</option>
                             <option value="1">Auth</option>
                             <option value="2">Admin</option>
@@ -59,9 +59,9 @@
                         <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Role</th>
-                            <th>Email</th>
-                            <th class="table-actions">Action</th>
+                            <th>Rechte</th>
+                            <th>E-Mail</th>
+                            <th class="table-actions">Aktion</th>
                         </tr>
 
                         </thead>

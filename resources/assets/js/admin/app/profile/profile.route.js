@@ -21,7 +21,7 @@
                     templateUrl: '/admin/views/admin.profile.index',
                     controller: 'ProfileController',
                     controllerAs: 'vm',
-                    title: 'My Profile'
+                    title: 'Mein Profil'
                 }
             }
         ];

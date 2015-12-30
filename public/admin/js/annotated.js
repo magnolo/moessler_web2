@@ -15,10 +15,12 @@
             'app.dashboard',
             'app.users',
             'app.posts',
-            'app.gallery'
+            'app.gallery',
+            'app.sliders'
         ]);
 
 }());
+
 (function() {
 
     'use strict';
@@ -32,8 +34,9 @@
     'use strict';
 
     angular
-        .module('app.dashboard', [
-            'app.core'
+        .module('app.core', [
+            'ui.router',
+            'ngResource'
         ]);
 
 }());
@@ -42,9 +45,8 @@
     'use strict';
 
     angular
-        .module('app.core', [
-            'ui.router',
-            'ngResource'
+        .module('app.dashboard', [
+            'app.core'
         ]);
 
 }());
@@ -76,6 +78,17 @@
         ]);
 
 }());
+(function() {
+
+    'use strict';
+
+    angular
+        .module('app.pages', [
+            'app.core'
+        ]);
+
+}());
+
 (function() {
 
     'use strict';
@@ -117,6 +130,17 @@
         ]);
 
 }());
+(function() {
+
+    'use strict';
+
+    angular
+        .module('app.sliders', [
+            'app.core'
+        ]);
+
+}());
+
 (function() {
 
     'use strict';
@@ -288,6 +312,34 @@
 
     'use strict';
 
+    appRun.$inject = ["routerHelper"];
+    angular
+        .module('app.core')
+        .run(appRun);
+
+    /* @ngInject */
+    function appRun(routerHelper) {
+        var otherwise = '/admin/404';
+        routerHelper.configureStates(getStates(), otherwise);
+    }
+
+    function getStates() {
+        return [
+            {
+                state: '404',
+                config: {
+                    url: '/admin/404',
+                    templateUrl: '/admin/views/admin.error.index'
+                }
+            }
+        ];
+    }
+
+}());
+(function() {
+
+    'use strict';
+
     angular
         .module("app.dashboard")
         .controller('DashboardController', DashboardController);
@@ -345,34 +397,6 @@
         ];
     }
 })();
-(function() {
-
-    'use strict';
-
-    angular
-        .module('app.core')
-        .run(appRun);
-
-    /* @ngInject */
-    function appRun(routerHelper) {
-        var otherwise = '/admin/404';
-        routerHelper.configureStates(getStates(), otherwise);
-    }
-    appRun.$inject = ["routerHelper"];
-
-    function getStates() {
-        return [
-            {
-                state: '404',
-                config: {
-                    url: '/admin/404',
-                    templateUrl: '/admin/views/admin.error.index'
-                }
-            }
-        ];
-    }
-
-}());
 (function() {
 
     'use strict';
@@ -452,7 +476,7 @@
                 _successResponse(res.message);
                 vm.gallery = '';
             }, function (err) {
-                _errorResponse(err.data, 'Gallery creation failed, see errors below');
+                _errorResponse(err.data, 'Speichern fehlgeschlagen, achte auf die Hinweise unten!');
             });
         }
 
@@ -465,7 +489,7 @@
             Gallery.update({id: vm.gallery.id}, vm.gallery, function (res) {
                 _successResponse(res.message);
             }, function (err) {
-                _errorResponse(err.data, 'Gallery edition failed, see errors below');
+                _errorResponse(err.data, 'Speichern fehlgeschlagen, achte auf die Hinweise unten!');
             });
         }
 
@@ -577,6 +601,7 @@
     }
 
 }());
+
 (function() {
 
     'use strict';
@@ -689,6 +714,72 @@
     }
 })();
 (function() {
+    'use strict';
+
+    angular
+        .module('app.pages')
+        .controller('PagesController', PagesController);
+
+    PagesController.$inject = ['$http', '$timeout', '$stateParams', 'Pages'];
+    /* @ngInject */
+    function PagesController($http, $timeout, $stateParams, Pages) {
+      var vm = this;
+
+    }
+
+})();
+
+(function() {
+
+    'use strict';
+
+    angular
+        .module('app.pages')
+        .run(appRun);
+
+    appRun.$inject = ['routerHelper'];
+    /* @ngInject */
+    function appRun(routerHelper) {
+        routerHelper.configureStates(getStates());
+    }
+
+    function getStates() {
+        return [
+            {
+                state: 'pages',
+                config: {
+                    url: '/admin/pages',
+                    templateUrl: '/admin/views/admin.pages.index',
+                    controller: 'PagesController',
+                    controllerAs: 'vm',
+                    title: 'Pages'
+                }
+            },
+            {
+                state: 'pages-create',
+                config: {
+                    url: '/admin/pages/create',
+                    templateUrl: '/admin/views/admin.pages.create',
+                    controller: 'PagesController',
+                    controllerAs: 'vm',
+                    title: 'Create Pages'
+                }
+            },
+            {
+                state: 'pages-edit',
+                config: {
+                    url: '/admin/pages/:id/edit',
+                    templateUrl: '/admin/views/admin.pages.edit',
+                    controller: 'PagesController',
+                    controllerAs: 'vm',
+                    title: 'Edit Pages'
+                }
+            }
+        ];
+    }
+})();
+
+(function() {
 
     'use strict';
 
@@ -749,7 +840,7 @@
                 _successResponse(res.message);
                 vm.post = '';
             }, function (err) {
-                _errorResponse(err.data, 'Post creation failed, see errors below');
+                _errorResponse(err.data, 'Speichern fehlgeschlagen, achte auf die Hinweise unten!');
             });
         }
 
@@ -762,7 +853,7 @@
             Post.update({id: vm.post.id}, vm.post, function (res) {
                 _successResponse(res.message);
             }, function (err) {
-                _errorResponse(err.data, 'Post edition failed, see errors below');
+                _errorResponse(err.data, 'Speichern fehlgeschlagen, achte auf die Hinweise unten!');
             });
         }
 
@@ -874,6 +965,7 @@
     }
 
 }());
+
 (function() {
 
     'use strict';
@@ -964,7 +1056,7 @@
             User.update({id: vm.authUser.id}, vm.authUser, function (res) {
                 _successResponse(res.message);
             }, function (err) {
-                _errorResponse(err.data, 'User edition failed, see errors below');
+                _errorResponse(err.data, 'Bearbeiten fehlgeschlagen, die Hinweise stehen unten');
             });
         }
 
@@ -1012,6 +1104,7 @@
     }
 
 }());
+
 (function() {
 
     'use strict';
@@ -1035,12 +1128,13 @@
                     templateUrl: '/admin/views/admin.profile.index',
                     controller: 'ProfileController',
                     controllerAs: 'vm',
-                    title: 'My Profile'
+                    title: 'Mein Profil'
                 }
             }
         ];
     }
 })();
+
 /* Help configure the state-base ui.router */
 (function() {
 
@@ -1210,6 +1304,26 @@
 
     angular
         .module("app.services")
+        .factory("Sliders", Sliders);
+
+    Sliders.$inject = ['$resource'];
+    /* @ngInject */
+    function Sliders($resource) {
+        return $resource('/admin/api/sliders/:id', {id: '@_id'}, {
+            update: {
+                method: 'PUT'
+            }
+        });
+    }
+
+}());
+
+(function() {
+
+    'use strict';
+
+    angular
+        .module("app.services")
         .factory("User", User);
 
     User.$inject = ['$resource'];
@@ -1223,6 +1337,72 @@
     }
 
 }());
+(function() {
+    'use strict';
+
+    angular
+        .module('app.sliders')
+        .controller('SlidersController', SlidersController);
+
+    SlidersController.$inject = ['$http', '$timeout', '$stateParams', 'Sliders'];
+    /* @ngInject */
+    function SlidersController($http, $timeout, $stateParams, Sliders) {
+      var vm = this;
+
+    }
+
+})();
+
+(function() {
+
+    'use strict';
+
+    angular
+        .module('app.sliders')
+        .run(appRun);
+
+    appRun.$inject = ['routerHelper'];
+    /* @ngInject */
+    function appRun(routerHelper) {
+        routerHelper.configureStates(getStates());
+    }
+
+    function getStates() {
+        return [
+            {
+                state: 'sliders',
+                config: {
+                    url: '/admin/sliders',
+                    templateUrl: '/admin/views/admin.sliders.index',
+                    controller: 'SlidersController',
+                    controllerAs: 'vm',
+                    title: 'Sliders'
+                }
+            },
+            {
+                state: 'sliders-create',
+                config: {
+                    url: '/admin/sliders/create',
+                    templateUrl: '/admin/views/admin.sliders.create',
+                    controller: 'SlidersController',
+                    controllerAs: 'vm',
+                    title: 'Create Sliders'
+                }
+            },
+            {
+                state: 'sliders-edit',
+                config: {
+                    url: '/admin/sliders/:id/edit',
+                    templateUrl: '/admin/views/admin.sliders.edit',
+                    controller: 'SlidersController',
+                    controllerAs: 'vm',
+                    title: 'Edit Sliders'
+                }
+            }
+        ];
+    }
+})();
+
 (function() {
 
     'use strict';

@@ -1,0 +1,19 @@
+(function() {
+
+    'use strict';
+
+    angular
+        .module("app.services")
+        .factory("{{StudlyName}}", {{StudlyName}});
+
+    {{StudlyName}}.$inject = ['$resource'];
+    /* @ngInject */
+    function {{StudlyName}}($resource) {
+        return $resource('/admin/api/{{name}}/:id', {id: '@_id'}, {
+            update: {
+                method: 'PUT'
+            }
+        });
+    }
+
+}());

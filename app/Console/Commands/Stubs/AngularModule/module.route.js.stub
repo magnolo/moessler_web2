@@ -1,0 +1,49 @@
+(function() {
+
+    'use strict';
+
+    angular
+        .module('app.{{name}}')
+        .run(appRun);
+
+    appRun.$inject = ['routerHelper'];
+    /* @ngInject */
+    function appRun(routerHelper) {
+        routerHelper.configureStates(getStates());
+    }
+
+    function getStates() {
+        return [
+            {
+                state: '{{name}}',
+                config: {
+                    url: '/admin/{{name}}',
+                    templateUrl: '/admin/views/admin.{{name}}.index',
+                    controller: '{{StudlyName}}Controller',
+                    controllerAs: 'vm',
+                    title: '{{StudlyName}}'
+                }
+            },
+            {
+                state: '{{name}}-create',
+                config: {
+                    url: '/admin/{{name}}/create',
+                    templateUrl: '/admin/views/admin.{{name}}.create',
+                    controller: '{{StudlyName}}Controller',
+                    controllerAs: 'vm',
+                    title: 'Create {{StudlyName}}'
+                }
+            },
+            {
+                state: '{{name}}-edit',
+                config: {
+                    url: '/admin/{{name}}/:id/edit',
+                    templateUrl: '/admin/views/admin.{{name}}.edit',
+                    controller: '{{StudlyName}}Controller',
+                    controllerAs: 'vm',
+                    title: 'Edit {{StudlyName}}'
+                }
+            }
+        ];
+    }
+})();

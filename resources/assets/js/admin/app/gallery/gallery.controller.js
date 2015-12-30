@@ -60,7 +60,7 @@
                 _successResponse(res.message);
                 vm.gallery = '';
             }, function (err) {
-                _errorResponse(err.data, 'Gallery creation failed, see errors below');
+                _errorResponse(err.data, 'Speichern fehlgeschlagen, achte auf die Hinweise unten!');
             });
         }
 
@@ -73,7 +73,7 @@
             Gallery.update({id: vm.gallery.id}, vm.gallery, function (res) {
                 _successResponse(res.message);
             }, function (err) {
-                _errorResponse(err.data, 'Gallery edition failed, see errors below');
+                _errorResponse(err.data, 'Speichern fehlgeschlagen, achte auf die Hinweise unten!');
             });
         }
 

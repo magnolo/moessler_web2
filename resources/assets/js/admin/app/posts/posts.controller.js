@@ -59,7 +59,7 @@
                 _successResponse(res.message);
                 vm.post = '';
             }, function (err) {
-                _errorResponse(err.data, 'Post creation failed, see errors below');
+                _errorResponse(err.data, 'Speichern fehlgeschlagen, achte auf die Hinweise unten!');
             });
         }
 
@@ -72,7 +72,7 @@
             Post.update({id: vm.post.id}, vm.post, function (res) {
                 _successResponse(res.message);
             }, function (err) {
-                _errorResponse(err.data, 'Post edition failed, see errors below');
+                _errorResponse(err.data, 'Speichern fehlgeschlagen, achte auf die Hinweise unten!');
             });
         }
 

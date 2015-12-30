@@ -5,9 +5,9 @@
  | Client Routes
  |--------------------------------------------------------------------------
 */
-
-Route::get('/', function() {
-
-    return "<h1 style='text-align: center; margin-top: 4em;'>Navigate to /admin/login</h1>";
-
+Route::group(['namespace' => 'Client'], function (){
+  Route::get('/', 'PageController@index');
+  Route::any('{path?}', function () {
+      return View('client.layouts.master');
+  });
 });

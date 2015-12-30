@@ -1,0 +1,15 @@
+(function() {
+    'use strict';
+
+    angular
+        .module('app.{{name}}')
+        .controller('{{StudlyName}}Controller', {{StudlyName}}Controller);
+
+    {{StudlyName}}Controller.$inject = ['$http', '$timeout', '$stateParams', '{{StudlyName}}'];
+    /* @ngInject */
+    function {{StudlyName}}Controller($http, $timeout, $stateParams, {{StudlyName}}) {
+      var vm = this;
+
+    }
+
+})();
