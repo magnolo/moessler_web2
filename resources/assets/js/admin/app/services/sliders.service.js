@@ -4,12 +4,12 @@
 
     angular
         .module("app.services")
-        .factory("Sliders", Sliders);
+        .factory("Events", Events);
 
-    Sliders.$inject = ['$resource'];
+    Events.$inject = ['$resource'];
     /* @ngInject */
-    function Sliders($resource) {
-        return $resource('/admin/api/sliders/:id', {id: '@_id'}, {
+    function Events($resource) {
+        return $resource('/admin/api/events/:id', {id: '@_id'}, {
             update: {
                 method: 'PUT'
             }

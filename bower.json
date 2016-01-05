@@ -6,6 +6,7 @@
     "bootstrap": "~3.3.6",
     "angular-resource": "~1.4.5",
     "textAngular": "~1.4.6",
-    "font-awesome": "~4.4.0"
+    "font-awesome": "~4.4.0",
+    "superfish": "git@github.com:joeldbirch/superfish.git#~1.7.7"
   }
 }

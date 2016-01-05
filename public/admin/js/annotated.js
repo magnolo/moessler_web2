@@ -16,7 +16,8 @@
             'app.users',
             'app.posts',
             'app.gallery',
-            'app.sliders'
+            'app.sliders',
+            'app.events'
         ]);
 
 }());
@@ -55,6 +56,17 @@
     'use strict';
 
     angular
+        .module('app.events', [
+            'app.core'
+        ]);
+
+}());
+
+(function() {
+
+    'use strict';
+
+    angular
         .module('app.filters', []);
 
 }());
@@ -73,22 +85,22 @@
     'use strict';
 
     angular
-        .module('app.login', [
-            'app.core'
-        ]);
-
-}());
-(function() {
-
-    'use strict';
-
-    angular
         .module('app.pages', [
             'app.core'
         ]);
 
 }());
 
+(function() {
+
+    'use strict';
+
+    angular
+        .module('app.login', [
+            'app.core'
+        ]);
+
+}());
 (function() {
 
     'use strict';
@@ -398,6 +410,72 @@
     }
 })();
 (function() {
+    'use strict';
+
+    angular
+        .module('app.events')
+        .controller('EventsController', EventsController);
+
+    EventsController.$inject = ['$http', '$timeout', '$stateParams', 'Events'];
+    /* @ngInject */
+    function EventsController($http, $timeout, $stateParams, Events) {
+      var vm = this;
+
+    }
+
+})();
+
+(function() {
+
+    'use strict';
+
+    angular
+        .module('app.events')
+        .run(appRun);
+
+    appRun.$inject = ['routerHelper'];
+    /* @ngInject */
+    function appRun(routerHelper) {
+        routerHelper.configureStates(getStates());
+    }
+
+    function getStates() {
+        return [
+            {
+                state: 'events',
+                config: {
+                    url: '/admin/events',
+                    templateUrl: '/admin/views/admin.events.index',
+                    controller: 'EventsController',
+                    controllerAs: 'vm',
+                    title: 'Events'
+                }
+            },
+            {
+                state: 'events-create',
+                config: {
+                    url: '/admin/events/create',
+                    templateUrl: '/admin/views/admin.events.create',
+                    controller: 'EventsController',
+                    controllerAs: 'vm',
+                    title: 'Create Events'
+                }
+            },
+            {
+                state: 'events-edit',
+                config: {
+                    url: '/admin/events/:id/edit',
+                    templateUrl: '/admin/views/admin.events.edit',
+                    controller: 'EventsController',
+                    controllerAs: 'vm',
+                    title: 'Edit Events'
+                }
+            }
+        ];
+    }
+})();
+
+(function() {
 
     'use strict';
 
@@ -652,68 +730,6 @@
     }
 })();
 (function() {
-
-    'use strict';
-
-    angular
-        .module("app.login")
-        .controller('LoginController', LoginController);
-
-    LoginController.$inject = ['$http', '$window'];
-    /* @nginject */
-    function LoginController($http, $window) {
-
-        var vm = this;
-
-        vm.user = {};
-        vm.login = login;
-
-        /**
-         * Login
-         */
-        function login() {
-            $http.post('/admin/login', {user: vm.user})
-                .success(function (res) {
-                    $window.location.href = '/admin/dashboard';
-                })
-                .error(function(res) {
-                    vm.error = res;
-                });
-        }
-
-    }
-
-}());
-
-(function() {
-
-    'use strict';
-
-    angular
-        .module('app.login')
-        .run(appRun);
-
-    appRun.$inject = ['routerHelper'];
-    /* @ngInject */
-    function appRun(routerHelper) {
-        routerHelper.configureStates(getStates());
-    }
-
-    function getStates() {
-        return [
-            {
-                state: 'login',
-                config: {
-                    url: '/admin/login',
-                    controller: 'LoginController',
-                    controllerAs: 'vm',
-                    title: 'Login'
-                }
-            }
-        ];
-    }
-})();
-(function() {
     'use strict';
 
     angular
@@ -779,6 +795,68 @@
     }
 })();
 
+(function() {
+
+    'use strict';
+
+    angular
+        .module("app.login")
+        .controller('LoginController', LoginController);
+
+    LoginController.$inject = ['$http', '$window'];
+    /* @nginject */
+    function LoginController($http, $window) {
+
+        var vm = this;
+
+        vm.user = {};
+        vm.login = login;
+
+        /**
+         * Login
+         */
+        function login() {
+            $http.post('/admin/login', {user: vm.user})
+                .success(function (res) {
+                    $window.location.href = '/admin/dashboard';
+                })
+                .error(function(res) {
+                    vm.error = res;
+                });
+        }
+
+    }
+
+}());
+
+(function() {
+
+    'use strict';
+
+    angular
+        .module('app.login')
+        .run(appRun);
+
+    appRun.$inject = ['routerHelper'];
+    /* @ngInject */
+    function appRun(routerHelper) {
+        routerHelper.configureStates(getStates());
+    }
+
+    function getStates() {
+        return [
+            {
+                state: 'login',
+                config: {
+                    url: '/admin/login',
+                    controller: 'LoginController',
+                    controllerAs: 'vm',
+                    title: 'Login'
+                }
+            }
+        ];
+    }
+})();
 (function() {
 
     'use strict';
@@ -1304,12 +1382,12 @@
 
     angular
         .module("app.services")
-        .factory("Sliders", Sliders);
+        .factory("Events", Events);
 
-    Sliders.$inject = ['$resource'];
+    Events.$inject = ['$resource'];
     /* @ngInject */
-    function Sliders($resource) {
-        return $resource('/admin/api/sliders/:id', {id: '@_id'}, {
+    function Events($resource) {
+        return $resource('/admin/api/events/:id', {id: '@_id'}, {
             update: {
                 method: 'PUT'
             }

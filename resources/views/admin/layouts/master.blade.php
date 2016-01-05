@@ -73,6 +73,12 @@
                             Sliders
                         </a>
                     </li>
+                    <li ng-class="{active: mainUrl == 'events'}">
+                        <a ui-sref="events" ng-click="isCollapsed = !isCollapsed">
+                            <i class="material-icons">subtitles</i>
+                            Events
+                        </a>
+                    </li>
                     <li ng-class="{active: mainUrl == 'posts'}">
                         <a ui-sref="posts" ng-click="isCollapsed = !isCollapsed">
                             <i class="material-icons">subtitles</i>

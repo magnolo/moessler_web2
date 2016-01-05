@@ -16,7 +16,8 @@
             'app.users',
             'app.posts',
             'app.gallery',
-            'app.sliders'
+            'app.sliders',
+            'app.events'
         ]);
 
 }());
